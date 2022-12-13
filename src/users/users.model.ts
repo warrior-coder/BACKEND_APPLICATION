@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
-import { Column, Model, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, Model, Table } from "sequelize-typescript";
+import { Roles } from "src/roles/roles.model";
+import { UsersRoles } from "src/roles/UsersRoles.model";
 
 interface IUserCreationAttributes
 {
@@ -8,7 +10,7 @@ interface IUserCreationAttributes
 }
 
 @Table({ tableName: 'users' })
-export class User extends Model<User, IUserCreationAttributes>
+export class Users extends Model<Users, IUserCreationAttributes>
 {
     @Column({ type: DataTypes.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
     id: number;
@@ -24,4 +26,7 @@ export class User extends Model<User, IUserCreationAttributes>
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     banReason: string;
+
+    @BelongsToMany(() => Roles, () => UsersRoles)
+    roles: Roles[];
 };

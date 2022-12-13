@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './users/users.model';
+import { Users } from './users/users.model';
 import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
+import { Roles } from './roles/roles.model';
+import { UsersRoles } from './roles/UsersRoles.model';
 
 // помечаем класс декоратором Module (обертка которая добавляет классу/функции новый функционал)
 @Module({
@@ -28,10 +31,11 @@ import { UsersModule } from './users/users.module';
             username: process.env.POSTGRES_USERNAME,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DATABASE,
-            models: [User],
+            models: [Users, Roles, UsersRoles],
             autoLoadModels: true
         }),
         UsersModule,
+        RolesModule,
     ]
 })
 export class AppModule {};
