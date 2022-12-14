@@ -6,6 +6,8 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/roles.model';
 import { UsersRoles } from './roles/UsersRoles.model';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
 
 // помечаем класс декоратором Module (обертка которая добавляет классу/функции новый функционал)
 @Module({
@@ -36,6 +38,7 @@ import { UsersRoles } from './roles/UsersRoles.model';
         }),
         UsersModule,
         RolesModule,
+        AuthModule,
     ]
 })
 export class AppModule {};
