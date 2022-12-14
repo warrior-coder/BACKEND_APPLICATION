@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { AuthModule } from 'src/auth/auth.module';
 import { Roles } from 'src/roles/roles.model';
 import { RolesModule } from 'src/roles/roles.module';
 import { RolesService } from 'src/roles/roles.service';
@@ -12,7 +13,8 @@ import { UsersService } from './users.service';
     providers: [UsersService],
     imports: [
         SequelizeModule.forFeature([Users, Roles]),
-        RolesModule // импортируем модуль
+        RolesModule, // импортируем модуль
+        forwardRef( () => AuthModule), // избавляемся от кольцевой зависимости
     ],
     exports: [
         UsersService

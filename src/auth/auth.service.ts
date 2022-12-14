@@ -54,8 +54,10 @@ export class AuthService
             roles: user.roles
         };
         
+        // генерируем и возвращаем JWT содержащий payload (опции дяя генерации указали при регистрации модуля)
+        // JWT (JSON Web Token) – стандарт для создания токенов доступа, основанный на формате JSON
         return {
-            token: this.jwtService.sign(payload) // генерируем токен, содержащий payload (опции дяя генерации указали при регистрации модуля)
+            token: this.jwtService.sign(payload) 
         };
     }
 
