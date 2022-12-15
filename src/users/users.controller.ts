@@ -25,11 +25,20 @@ export class UsersController
         return this.userService.GetAllUsers();
     }
 
-    @AccessRoles('ADMIN') // только ADMIN может выдавать роли
+    @AccessRoles('USER') // только ADMIN может выдавать роли
     @UseGuards(RolesGuard)
     @Post('/add-role')
     AddRole(@Body() dto: AddUserRoleDTO)
     {
         return this.userService.AddUserRole(dto);
     }
+
+    @AccessRoles('ADMIN') // только ADMIN может банить пользователей 
+    @UseGuards(RolesGuard)
+    @Post('/ban')
+    Ban(@Body() dto: BanUserDTO)
+    {
+        return this.userService.BanUser(dto);
+    }
+
 };

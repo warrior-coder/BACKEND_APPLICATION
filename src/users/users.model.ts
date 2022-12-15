@@ -22,7 +22,7 @@ export class Users extends Model<Users, IUserCreationAttributes>
     password: string;
 
     @Column({ type: DataTypes.BOOLEAN, defaultValue: false })
-    banned: string;
+    banned: boolean;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     banReason: string;

@@ -1,0 +1,60 @@
+[
+    {
+        "id": 1,
+        "email": "mail_2@mail.com",
+        "password": "$2a$05$EcI3bxiz2eoNHSQpRx.uMeIgsu8UuL8BQz8ReBWiaal4YgUsgl/SS",
+        "banned": false,
+        "banReason": null,
+        "createdAt": "2022-12-15T22:11:49.621Z",
+        "updatedAt": "2022-12-15T22:11:49.621Z",
+        "roles": [
+            {
+                "id": 2,
+                "name": "USER",
+                "description": "опиание юзера",
+                "createdAt": "2022-12-15T22:11:20.329Z",
+                "updatedAt": "2022-12-15T22:11:20.329Z",
+                "UsersRoles": {
+                    "id": 1,
+                    "idUser": 1,
+                    "idRole": 2
+                }
+            },
+            {
+                "id": 1,
+                "name": "ADMIN",
+                "description": "опиание админа",
+                "createdAt": "2022-12-15T22:11:09.060Z",
+                "updatedAt": "2022-12-15T22:11:09.060Z",
+                "UsersRoles": {
+                    "id": 3,
+                    "idUser": 1,
+                    "idRole": 1
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "email": "mail_1@mail.com",
+        "password": "$2a$05$kVHKpIoROCbghu2LCBgqOuSzOiYCg0IYYG2JuK77stTj26iOK93bS",
+        "banned": true,
+        "banReason": "ban ban ban ban ban ban",
+        "createdAt": "2022-12-15T22:12:06.266Z",
+        "updatedAt": "2022-12-15T22:18:03.258Z",
+        "roles": [
+            {
+                "id": 2,
+                "name": "USER",
+                "description": "опиание юзера",
+                "createdAt": "2022-12-15T22:11:20.329Z",
+                "updatedAt": "2022-12-15T22:11:20.329Z",
+                "UsersRoles": {
+                    "id": 2,
+                    "idUser": 2,
+                    "idRole": 2
+                }
+            }
+        ]
+    }
+]

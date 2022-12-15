@@ -53,11 +53,32 @@ export class UsersService
         // если все найдено
         if (!user || !role)
         {
-            throw new HttpException('пользователь или роль не найдены', HttpStatus.FORBIDDEN); // если нет доступа
+            throw new HttpException('пользователь или роль не найдены', HttpStatus.FORBIDDEN);
         }
         
         await user.$add('role', role.id); // добавляем значение к свойству
     
         return dto;
     }
+
+    async BanUser(dto: BanUserDTO)
+    {
+        // ищем user по первичному ключу (PK)
+        const user = await this.usersRepository.findByPk(dto.idUser);
+
+        // если все найдено
+        if (!user)
+        {
+            throw new HttpException('пользователь не найден', HttpStatus.FORBIDDEN);
+        }
+                
+        user.banned = true;
+        user.banReason = dto.banReason;
+
+        await user.save(); // обновляем значения в бд
+
+        return user;
+    }
+
+
 };
