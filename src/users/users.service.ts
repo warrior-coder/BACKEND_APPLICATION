@@ -41,4 +41,23 @@ export class UsersService
         
         return user;
     }
+
+    async AddUserRole(dto: AddUserRoleDTO)
+    {
+        // ищем user по первичному ключу (PK)
+        const user = await this.usersRepository.findByPk(dto.idUser);
+
+        // ищем role по имени
+        const role = await this.rolesService.GetRoleByName(dto.roleName);
+
+        // если все найдено
+        if (!user || !role)
+        {
+            throw new HttpException('пользователь или роль не найдены', HttpStatus.FORBIDDEN); // если нет доступа
+        }
+        
+        await user.$add('role', role.id); // добавляем значение к свойству
+    
+        return dto;
+    }
 };

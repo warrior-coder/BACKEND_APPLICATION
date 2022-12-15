@@ -32,13 +32,4 @@ export class UsersController
     {
         return this.userService.AddUserRole(dto);
     }
-
-    @AccessRoles('ADMIN') // только ADMIN может банить пользователей 
-    @UseGuards(RolesGuard)
-    @Post('/ban')
-    Ban(@Body() dto: BanUserDTO)
-    {
-        return this.userService.BanUser(dto);
-    }
-
 };
