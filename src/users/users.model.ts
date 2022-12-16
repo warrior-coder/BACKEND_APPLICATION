@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import { BelongsToMany, Column, Model, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, HasMany, Model, Table } from "sequelize-typescript";
+import { Posts } from "src/posts/posts.model";
 import { Roles } from "src/roles/roles.model";
 import { UsersRoles } from "src/roles/UsersRoles.model";
 
@@ -27,6 +28,9 @@ export class Users extends Model<Users, IUserCreationAttributes>
     @Column({ type: DataTypes.STRING, allowNull: true })
     banReason: string;
 
-    @BelongsToMany(() => Roles, () => UsersRoles)
+    @BelongsToMany(() => Roles, () => UsersRoles) // один user может принадлежать многим roles
     roles: Roles[];
+
+    @HasMany(() => Posts) // одному пользователю принадлежит много постов
+    posts: Posts[];
 };

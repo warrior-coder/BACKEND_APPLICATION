@@ -7,22 +7,25 @@ import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/roles.model';
 import { UsersRoles } from './roles/UsersRoles.model';
 import { AuthModule } from './auth/auth.module';
-import { AuthController } from './auth/auth.controller';
+import { PostsModule } from './posts/posts.module';
+import { Posts } from './posts/posts.model';
+import { FilesModule } from './files/files.module';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static'
 
 // помечаем класс декоратором Module (обертка которая добавляет классу/функции новый функционал)
 @Module({
     // чтобы контроллеры заработали зарегистрируем их в модуле
-    controllers: [
-        
-    ],
+    controllers: [],
 
     // все что содержит логику и может использоваться в других компонентах
-    providers: [
-        
-    ],
+    providers: [],
 
     // для импорта в модуль других модулей
     imports: [
+        ServeStaticModule.forRoot({ // чтобы сервер мог раздавать статику
+            rootPath: join(__dirname, 'static'),
+        }),
         ConfigModule.forRoot({
             envFilePath: `./.${process.env.NODE_ENV}.env`
         }),
@@ -33,12 +36,14 @@ import { AuthController } from './auth/auth.controller';
             username: process.env.POSTGRES_USERNAME,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DATABASE,
-            models: [Users, Roles, UsersRoles],
+            models: [Users, Roles, UsersRoles, Posts], // в настройках бд добавим используемые модели
             autoLoadModels: true
         }),
         UsersModule,
         RolesModule,
         AuthModule,
+        PostsModule,
+        FilesModule,
     ]
 })
 export class AppModule {};

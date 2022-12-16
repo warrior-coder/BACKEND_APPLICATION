@@ -21,6 +21,6 @@ export class Roles extends Model<Roles, IRoleCreationAttributes>
     @Column({ type: DataTypes.STRING, allowNull: false })
     description: string;
 
-    @BelongsToMany(() => Users, () => UsersRoles)
+    @BelongsToMany(() => Users, () => UsersRoles) // один role может принадлежать многим users
     users: Users[];
 };
