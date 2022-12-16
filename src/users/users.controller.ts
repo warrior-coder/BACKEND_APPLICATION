@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, UsePipes } from '@nestjs/common';
 import { AccessRoles } from 'src/auth/AccessRoles.decorator';
 import { RolesGuard } from 'src/auth/AccessRoles.guard';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { AddUserRoleDTO } from './DTO/AddUserRoleDTO';
 import { BanUserDTO } from './DTO/BanUserDTO';
 import { CreateUserDTO } from './DTO/CreateUser.DTO';
@@ -12,6 +13,7 @@ export class UsersController
 {
     constructor(private userService: UsersService) {}
 
+    // @UsePipes(ValidationPipe)
     @Post()
     Create(@Body() dto: CreateUserDTO)
     {
